@@ -45,3 +45,71 @@
 [Temporal Summarization Track](http://trec.nist.gov/data/tempsumm.html)  
 [Terabyte Track](http://trec.nist.gov/data/terabyte.html)    
 
+
+
+**The Academic Benchmark**
+
+为了解决论文中数据比较问题，提供代码和数据，还有某一个问题的baseline。
+
+http://www.bigdatalab.ac.cn/benchmark/
+
+> The Academic Benchmark is designed to facilitate research in computer science (CS). The major purpose is to change the situation in CS where most published methods are difficult to compare with due to the lack of public dataset, open codes, or clear experimental settings. Therefore, in this website, we not only report the performances of state-of-the-art algorithms in different domains, but also collect the corresponding datasets, codes, and scripts that can make the experimental results reproducible. When developing new methods in these domain, researchers can simply take-away and compare with all the available baseline methods. In this way, we can help researchers spend less time on duplicated efforts, and focus more on new ideas.
+
+包括分类：
+
+- Recommendation
+
+Dataset List
+
+- [MOVIELENS-10M](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Recommendation#a)  
+- [Netflix](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Recommendation#b)  
+- [Yahoo_Music](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Recommendation#c)  
+- [Ta-Feng](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Recommendation#d)  
+- [Beiren](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Recommendation#e)  
+
+- Representing Learning
+
+Dataset List
+
+- [Word Analogy](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Representation%20Learning#a)  
+- [Rare Word](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Representation%20Learning#b)  
+- [Word Similarity 353](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Representation%20Learning#c)  
+- [Stanford Contextual Word Similarity](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Representation%20Learning#d)  
+
+- Topic modeling
+
+Dataset List
+
+- [20News](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Topic%20Modeling#a)  
+- [BaiduQA](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Topic%20Modeling#b)  
+- [NIPS](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Topic%20Modeling#c)  
+
+- Community detect
+
+Dataset List
+
+- [SyntheticNetwork_LRF_0.6](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Community%20Detection#a)  
+- [SyntheticNetwork_LRF_0.2](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Community%20Detection#b)  
+- [SyntheticNetwork_LRF_0.4](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Community%20Detection#c)  
+
+- IR
+
+Dataset List
+
+- [MQ2007](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#a)  
+- [MQ2008](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#b)  
+- [MQ2007-semi](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#c)  
+- [MQ2008-semi](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#d)  
+- [MQ2007-agg](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#e)  
+- [MQ2008-agg](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#f)  
+- [MQ2007-list](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#g)  
+- [MQ2008-list](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#h)  
+- [TREC 2009 Web Track](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#i)  
+- [TREC 2010 Web Track](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#j)  
+- [TREC 2011 Web Track](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#k)  
+- [Robust04-Desc](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#l)  
+- [ClueWeb09B-Title](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#m)  
+- [Robust04-Title](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#n)  
+- [WordEmbedding](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#o)  
+- [ClueWeb09B-Desc](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#p)  
+
