@@ -66,9 +66,8 @@ class Get_Data():
     def __repr__(self):
         self.file_path()
         return self.filepath
-#
-f=Get_Data(source_file_path="https://mirrors.tuna.tsinghua.edu.cn/tensorflow/releases.json")
-print(f)
+# f=Get_Data(source_file_path="https://mirrors.tuna.tsinghua.edu.cn/tensorflow/releases.json")
+# print(f)
 
 
 class Beat_Data():
@@ -149,10 +148,25 @@ class Process_Data_NLP():
     """
     1.如果是中文先切词。
     """
-    def __init__(self,filepath):
+    def __init__(self,filepath=""):
         self.filepath=filepath
-    def split_words(self):
-        pass
+
+    def split_cn_save(self,filepath_input,filepath_save):
+        import jieba
+        # jieba.enable_parallel(4)
+        with open(filepath_input,"rb") as fr:
+            for line in fr.readlines():
+                # print(" ".join(jieba.cut(line)))
+                with open(filepath_save,"wb") as fw:
+                    fw.write(" ".join(jieba.cut(line)))
+
+    def split_cn(self,filepath):
+        import jieba
+        with open(filepath) as f:
+            for line in f.readlines():
+                for word in jieba.cut(line):
+                    yield word
+
     def read_data(self,filepath):
         with open(filepath) as f:
             for line in f.readlines():
@@ -215,22 +229,6 @@ class Show_Data():
 
 
 
-
-
-def test():
-    file_path = "/home/sq/learnhub/course/cs224d/cs224d/assignment2/data/ptb/ptb.train.txt"
-    skip_window=5
-    batch_size=10
-    words = read_data(file_path)
-    word_dictionary, index_dictionary = build_vocab(words)
-    words = read_data(file_path)
-    index_words = convert_words_to_index(words, word_dictionary)
-    del words  # to save memory
-    single_gen = generate_sample(index_words, skip_window)
-
-    center_word,target_word=next(get_batch(single_gen, batch_size))
-    # print(type(center_word[0]),target_word)
-    print(convert_index_to_words(center_word,index_dictionary),"\n",convert_index_to_words(target_word,index_dictionary))
-
 if __name__=="__main__":
-    test()
+    pnlp=Process_Data_NLP()
+    pnlp.split_cn_save("F:\data\红楼梦.txt","F:\data\红楼梦seg.txt")
