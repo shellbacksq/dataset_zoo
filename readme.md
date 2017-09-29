@@ -1,6 +1,6 @@
 # 总项目
 
-![fastModeling](../images/fastModeling.png)
+![fastModeling](/images/fastModeling.png)
 
 ## 目的：整理好一批实验项目用来学习新框架和测试
 
