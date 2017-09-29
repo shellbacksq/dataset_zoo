@@ -14,7 +14,9 @@ import urllib
 from six.moves import urllib
 import numpy as np
 import random
-
+import sys
+from collections import Counter
+import re
 
 class Get_Data():
     """
@@ -146,36 +148,155 @@ class Beat_Data():
 
 class Process_Data_NLP():
     """
-    1.如果是中文先切词。
+    实现功能：
+    1. 对中英文切词
+    2. 计算词频
+    3. 对词进行筛选
+    4. 构建词典
+    5. 加载已有数据和字典的功能
     """
     def __init__(self,filepath=""):
-        self.filepath=filepath
+        pass
 
-    def split_cn_save(self,filepath_input,filepath_save):
-        import jieba
-        # jieba.enable_parallel(4)
-        with open(filepath_input,"rb") as fr:
-            for line in fr.readlines():
-                # print(" ".join(jieba.cut(line)))
-                with open(filepath_save,"wb") as fw:
-                    fw.write(" ".join(jieba.cut(line)))
+    @staticmethod
+    def parse(line):
+        subs = line.split(' ', 1)
+        if 1 == len(subs):
+            return subs[0], ''
+        else:
+            return subs[0], subs[1]
 
-    def split_cn(self,filepath):
+    @staticmethod
+    def load(file_path):
+        dids = list()
+        docs = list()
+        f = open(file_path, 'r')
+        for line in f:
+            line = line.decode('utf8')
+            line = line.strip()
+            if '' != line:
+                did, doc = Process_Data_NLP.parse(line)
+                dids.append(did)
+                docs.append(doc)
+        f.close()
+        return dids, docs
+
+    @staticmethod
+    def split_cn_save(filepath_input,filepath_save):
+        """
+        保存切词后文件
+        :param filepath_input:
+        :param filepath_save:
+        :return:
+        """
         import jieba
+        with open(filepath_save, "wb") as fw:
+            with open(filepath_input,"rb") as fr:
+                for line in fr.readlines():
+                        fw.write(" ".join(jieba.cut(line)).encode("utf8"))
+
+    @staticmethod
+    def split_cn(filepath):
+        """
+        直接返回切完词后的句子
+        :param filepath:
+        :return:
+        """
+        import jieba
+        with open(filepath,"rb") as f:
+            for line in f.readlines():
+                yield " ".join(jieba.cut(line))
+
+    @staticmethod
+    def read_cn_line(filepath):
+        """
+        直接返回句子
+        :param filepath:
+        :return:
+        """
+        return Process_Data_NLP.split_cn(filepath)
+
+    @staticmethod
+    def read_cn_word(filepath):
+        """
+        直接返回句子
+        :param filepath:
+        :return:
+        """
+        lines=Process_Data_NLP.split_cn(filepath)
+        for line in lines:
+            for word in line.split(" "):
+                yield word
+
+    @staticmethod
+    def read_en_line(filepath):
+        """
+        直接返回句子
+        :param filepath:
+        :return:
+        """
         with open(filepath) as f:
             for line in f.readlines():
-                for word in jieba.cut(line):
-                    yield word
+                yield line
 
-    def read_data(self,filepath):
+    @staticmethod
+    def read_en_word(filepath):
+        """
+        返回句子中的词
+        :param filepath:
+        :return:
+        """
         with open(filepath) as f:
             for line in f.readlines():
                 for word in line.split():
                     yield word
 
+    @staticmethod
+    def _word_freq(docs):
+        wdf = dict()
+        for ws in docs.split("\r\n"):
+            # ws = set(ws)
+            for w in re.split("[\s]+",ws):
+                wdf[w] = wdf.get(w, 0) + 1
+        return wdf
+
+    @staticmethod
+    def _word_filter(docs,
+                     exist_words_useless=True,
+                    stop_list=list(),
+                    min_freq=1,
+                    max_freq=sys.maxsize):
+        from string import punctuation
+        add_punc = '，、【】“”：；（）《》‘’{}？！⑦()、%^>℃：.”“^-——=擅长于的&#@￥。．'
+        all_punc = punctuation + add_punc
+        stop_words = [item for item in all_punc] + [""]
+        stop_words.extend(stop_list)
+        if exist_words_useless:
+            words_useless = set()
+            # # filter with stop_words
+            words_useless.update(stop_words)
+            # # filter with min_freq and max_freq
+            wdf = Process_Data_NLP._word_freq(docs)
+            for w in wdf:
+                if min_freq > wdf[w] or max_freq < wdf[w]:
+                    words_useless.add(w)
+        # filter with useless words
+        docs = [[w for w in re.split("[\s]+",ws) if w not in stop_words] for ws in docs.split("\r\n") if len(ws)>0]
+        return docs, words_useless
+
+    @staticmethod
+    def word_freq(filepath):
+        with open(filepath,"rb") as f:
+            return Process_Data_NLP._word_freq(f.read().decode())
+
+    @staticmethod
+    def word_filter(filepath,words_useless=None,stop_list=[],min_freq=1,max_freq=sys.maxsize):
+        with open(filepath,"rb") as f:
+            return Process_Data_NLP._word_filter(f.read().decode(),stop_list=stop_list)
+
     def build_vocab(self,word_data,vocab_size=None):
         """ 建立词汇表，TODO：最常见的N个词 """
-        from collections import Counter
+        # word_data = list(itertools.chain.from_iterable(w))
         import copy
         c=Counter()
         word_to_index = {}
@@ -210,6 +331,10 @@ class Process_Data_NLP():
             # get a random target after the center wrod
             for target in index_words[index + 1: index +context_window_size-context + 1]:
                 yield center, target
+    def save(self,data,outpath):
+        with open(outpath,"wb") as f:
+            for line in data:
+                f.write(" ".join(line).encode("utf8")+"\r\n".encode("utf8"))
 
     def get_batch(self,iterator, batch_size):
         """ Group a numerical stream into batches and yield them as Numpy arrays. """
@@ -231,4 +356,17 @@ class Show_Data():
 
 if __name__=="__main__":
     pnlp=Process_Data_NLP()
-    pnlp.split_cn_save("F:\data\红楼梦.txt","F:\data\红楼梦seg.txt")
+    data,_=pnlp.word_filter("F:\data\红楼梦seg.txt",stop_list=["了"])
+    # # pnlp.save(data,"红楼梦filter.txt")
+    import itertools
+    doc=list(itertools.chain.from_iterable(data))
+    vocab_dict,_=pnlp.build_vocab(doc)
+    with open("红楼梦index.txt","wb") as f:
+        for line in data:
+            data_index=pnlp.convert_words_to_index(line,vocab_dict)
+            # print(data_index)
+            # c,t=pnlp.generate_sample(data_index,5)
+            # print(c)
+    #         print(data_index)
+            f.write(" ".join([str(index) for index in data_index]).encode("utf8")+"\r\n".encode("utf8"))
+    # with open("红楼梦index.txt", "rb") as f:
