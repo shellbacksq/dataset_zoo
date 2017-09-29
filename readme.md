@@ -1,3 +1,7 @@
+# 总项目
+
+![fastModeling](./images/fastModeling.png)
+
 ## 目的：整理好一批实验项目用来学习新框架和测试
 
 ### 每份实验项目包括：
@@ -18,17 +22,17 @@
 1. 位置： /mnt/data1/imdb_full.pkl
 
 2. 数据集描述：
-来源：http://ai.stanford.edu/~amaas/data/sentiment/  63M
-下载地址：https://s3.amazonaws.com/text-datasets/imdb_full.pkl
+  来源：http://ai.stanford.edu/~amaas/data/sentiment/  63M
+  下载地址：https://s3.amazonaws.com/text-datasets/imdb_full.pkl
 
     整体描述：
     本数据库含有来自IMDB的25,000条影评，被标记为正面/负面两种评价。
-    
+
     单个描述：
     直观描述：
 
 3. 实验目标
-根据文本内容判断褒贬
+  根据文本内容判断褒贬
 
 4. 预处理程序
 
@@ -71,18 +75,18 @@ y_train和y_test：为序列的标签，是一个二值list
 1. 位置： /mnt/data1/reuters.pkl
 
 2. 数据集描述：
-来源：不详 8.8M
-下载地址：https://s3.amazonaws.com/text-datasets/reuters.pkl
+  来源：不详 8.8M
+  下载地址：https://s3.amazonaws.com/text-datasets/reuters.pkl
 
     整体描述：
     本数据库包含来自路透社的11,228条新闻，分为了46个主题。与IMDB库一样，每条新闻被编码为一个词下标的序列。
 
     单个描述：
-    
+
     直观描述：
 
 3. 实验目标
-根据文本内容分类
+  根据文本内容分类
 
 4. 预处理程序
 
@@ -119,8 +123,8 @@ path：如果你在本机上已有此数据集（位于'~/.keras/datasets/'+path
 1. 位置： /mnt/data1/mnist
 
 2. 数据集描述：
-来源：http://yann.lecun.com/exdb/mnist/ 12M
-下载地址：https://s3.amazonaws.com/img-datasets/mnist.pkl.gz
+  来源：http://yann.lecun.com/exdb/mnist/ 12M
+  下载地址：https://s3.amazonaws.com/img-datasets/mnist.pkl.gz
 
     整体描述
     文件 内容
@@ -128,15 +132,14 @@ path：如果你在本机上已有此数据集（位于'~/.keras/datasets/'+path
     train-labels-idx1-ubyte.gz 训练集图片对应的数字标签
     t10k-images-idx3-ubyte.gz 测试集图片 - 10000 张 图片
     t10k-labels-idx1-ubyte.gz 测试集图片对应的数字标签
-    
+
     单个描述
     每张图片由28*28个像素点组成，每个像素点的值在[0,255]之间。
-    
+
     直观描述：
 
-	
 3. 实验目标
-根据图片数据预测该图片代表的数字。
+  根据图片数据预测该图片代表的数字。
 
 4. 预处理程序
 
@@ -166,23 +169,23 @@ y_train和y_test：是形如（nb_samples,）标签数据，标签的范围是0~
 1. 位置： /mnt/data1/cifar-10-python.tar.gz
 
 2. 数据集描述：
-数据集来源：http://www.cs.toronto.edu/~kriz/cifar.html
-下载地址：
-http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz 163M
-http://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz 153M
+  数据集来源：http://www.cs.toronto.edu/~kriz/cifar.html
+  下载地址：
+  http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz 163M
+  http://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz 153M
 
     整体描述:
     CIFAR10：该数据库具有50,000个32*32的彩色图片作为训练集，10,000个图片作为测试集。图片一共有10个类别，每个类有6000个照片。
     CIFAR100：该数据库具有50,000个32*32的彩色图片作为训练集，10,000个图片作为测试集。图片一共有100个类别，每个类别有600张图片。这100个类别又分为20个大类。
-    
+
     单个描述：
     照片是三个通道的，32*32*3,其中32*32代表高度和宽度各有32个像素点，3代表有rgb三个通道。
     其中label是0-10的数字代表airplane、automobile、bird、cat、deer、dog、frog、horse、ship、truck。
-    
+
     直观描述：
 
 3. 实验目标   
-分类
+  分类
 
 4.预处理
 
