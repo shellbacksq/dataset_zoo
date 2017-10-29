@@ -1,6 +1,5 @@
 # 数据资源列表
-
-**TREC数据集**
+## TREC数据集
 
 ![](http://trec.nist.gov/images/paper_3.jpg)
 
@@ -45,9 +44,11 @@
 [Temporal Summarization Track](http://trec.nist.gov/data/tempsumm.html)  
 [Terabyte Track](http://trec.nist.gov/data/terabyte.html)    
 
+  
 
 
-**The Academic Benchmark**
+
+## The Academic Benchmark
 
 为了解决论文中数据比较问题，提供代码和数据，还有某一个问题的baseline。
 
@@ -113,3 +114,22 @@ Dataset List
 - [WordEmbedding](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#o)  
 - [ClueWeb09B-Desc](http://www.bigdatalab.ac.cn/benchmark/bm/Domain?domain=Information%20Retrieval#p)  
 
+
+
+## MS MACRO
+Microsoft MAchine Reading COmprehension Dataset 语义理解数据集
+
+包含train set,dev set,test set  
+http://www.msmarco.org/dataset.aspx
+
+**description**: Microsoft Machine Reading Comprehension (MS MARCO) is a new large scale dataset for reading comprehension and question answering. In MS MARCO, all questions are sampled from real anonymized user queries. The context passages, from which answers in the dataset are derived, are extracted from real web documents using the most advanced version of the Bing search engine. The answers to the queries are human generated if they could summarize the answer.
+
+数据来自于Bing搜索引擎的真是数据，query是用户检索的的，answer是人工收集的。
+
+数据样式:json格式
+query:query的具体文本
+query_id：一共有9651个query，这里是query编号
+query_type:大部分为description
+
+passage_text:回答的内容
+url:passage_text的来源地址
